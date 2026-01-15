@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GoalManager : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class GoalManager : MonoBehaviour
         if (other.name == player.name)
         {
             //テキストの内容を変更する
-            text.GetComponent<Text>().text = "ゴール！";
+            text.GetComponent<TextMeshProUGUI>().text = "goal";
             text.SetActive(true);            //テキストをオンにして非表示→表示にする
             isGoal = true;            //Goal判定をTrueにする
         }
