@@ -9,13 +9,13 @@ public class GoalManager : MonoBehaviour
 {
     public GameObject player;       // プレイヤーを格納するための変数
     public GameObject text;    　   // テキストを格納するための変数
-    public Scene loadNextScene;     // 次のシーン(ステージ)名
+    public GameObject loadNextScene;     // 次のシーン(ステージ)名
     private bool isGoal = false;    //Goalしたかどうか判定する
 
     void Update()
     {
         //Goalした後で画面をクリックされたとき
-        if (isGoal && Input.GetMouseButton(0))
+        if (isGoal == true && Input.GetMouseButton(0))
         {
             Clear();    // 次のステージへ
         }
@@ -33,8 +33,9 @@ public class GoalManager : MonoBehaviour
         }
     }
 
-    private void Clear()
+    public void Clear()
     {
+        Debug.Log(loadNextScene.name);
         SceneManager.LoadScene(loadNextScene.name);
     }
 }
