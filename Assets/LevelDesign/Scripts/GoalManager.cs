@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GoalManager : MonoBehaviour
 {
-    public GameObject player;    //プレイヤーを格納するための変数
-    public GameObject text;    　//テキストを格納するための変数
+    public GameObject player;       // プレイヤーを格納するための変数
+    public GameObject text;    　   // テキストを格納するための変数
+    public Scene loadNextScene;     // 次のシーン(ステージ)名
     private bool isGoal = false;    //Goalしたかどうか判定する
 
     void Update()
@@ -15,7 +17,7 @@ public class GoalManager : MonoBehaviour
         //Goalした後で画面をクリックされたとき
         if (isGoal && Input.GetMouseButton(0))
         {
-            Restart();
+            Clear();    // 次のステージへ
         }
     }
 
@@ -26,16 +28,13 @@ public class GoalManager : MonoBehaviour
         if (other.name == player.name)
         {
             //テキストの内容を変更する
-            text.GetComponent<Text>().text = "ゴール！";
-            text.SetActive(true);            //テキストをオンにして非表示→表示にする
+            text.SetActive(true);      //テキストをオンにして非表示→表示にする
             isGoal = true;            //Goal判定をTrueにする
         }
     }
 
-    //シーンを再読み込みする
-    private void Restart()
+    private void Clear()
     {
-        Scene loadScene = SceneManager.GetActiveScene();        // 現在のScene名を取得する
-        SceneManager.LoadScene(loadScene.name);        // Sceneの読み直し
+        SceneManager.LoadScene(loadNextScene.name);
     }
 }
