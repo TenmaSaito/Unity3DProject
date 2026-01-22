@@ -7,12 +7,10 @@ using TMPro;
 
 public class GoalManager : MonoBehaviour
 {
-    public GameObject player;    //プレイヤーを格納するための変数
-    public GameObject text;    　//テキストを格納するための変数
+    public GameObject player;       // プレイヤーを格納するための変数
+    public GameObject text;    　   // テキストを格納するための変数
+    public Scene loadNextScene;     // 次のシーン(ステージ)名
     private bool isGoal = false;    //Goalしたかどうか判定する
-    public Scene loadNextScene;     // 次のシーン(ステージ)名 
-    public Scene loadResetScene;    // 全クリしたら一面に戻る
-    public bool blast;              // ゲーム自体をクリアしたか判定
 
     void Update()
     {
@@ -39,7 +37,4 @@ public class GoalManager : MonoBehaviour
     {
         SceneManager.LoadScene(loadNextScene.name);
     }
-
-
-
 }
