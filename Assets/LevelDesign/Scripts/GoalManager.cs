@@ -10,13 +10,16 @@ public class GoalManager : MonoBehaviour
     public GameObject player;    //プレイヤーを格納するための変数
     public GameObject text;    　//テキストを格納するための変数
     private bool isGoal = false;    //Goalしたかどうか判定する
+    public Scene loadNextScene;     // 次のシーン(ステージ)名 
+    public Scene loadResetScene;    // 全クリしたら一面に戻る
+    public bool blast;              // ゲーム自体をクリアしたか判定
 
     void Update()
     {
         //Goalした後で画面をクリックされたとき
         if (isGoal && Input.GetMouseButton(0))
         {
-            Restart();
+            Clear();    // 次のステージへ
         }
     }
 
@@ -27,16 +30,16 @@ public class GoalManager : MonoBehaviour
         if (other.name == player.name)
         {
             //テキストの内容を変更する
-            text.GetComponent<TextMeshProUGUI>().text = "goal";
-            text.SetActive(true);            //テキストをオンにして非表示→表示にする
+            text.SetActive(true);      //テキストをオンにして非表示→表示にする
             isGoal = true;            //Goal判定をTrueにする
         }
     }
 
-    //シーンを再読み込みする
-    private void Restart()
+    private void Clear()
     {
-        Scene loadScene = SceneManager.GetActiveScene();        // 現在のScene名を取得する
-        SceneManager.LoadScene(loadScene.name);        // Sceneの読み直し
+        SceneManager.LoadScene(loadNextScene.name);
     }
+
+
+
 }
